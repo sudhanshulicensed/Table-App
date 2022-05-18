@@ -1,28 +1,32 @@
 <template>
   <div id="app">
     <div class="component">
-      <AddEditForm />
-      <FormToTable />
+      <div class="form-modal"><FormModal /></div>
+      <div class="form-to-tab"><FormToTable /></div>
     </div>
   </div>
 </template>
 
 <script>
 
-import AddEditForm from "./components/Add-Edit_Form.vue"
 import FormToTable from "./components/Table.vue"
+import FormModal from "./components/Modal.vue"
 
 export default {
   name: 'App',
   components: {
-    AddEditForm,
     FormToTable,
+    FormModal,
   }
 }
 </script>
 
 <style>
   .component{
-    
+    box-sizing: border-box;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 50px;
   }
 </style>
