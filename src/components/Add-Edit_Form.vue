@@ -1,21 +1,22 @@
 <template>
   <form class="form" action="">
+  {{inputData}}
     <div class="form-title">
       <p>Add-Data to Table</p>
     </div>
     <div class="input-1">
       <b-field label="Name">
-        <b-input v-model="name"></b-input>
+        <b-input v-model="firstName"></b-input>
       </b-field>
     </div>
     <div class="input-2">
-      <b-field label="Email" type="is-danger" message="This email is invalid">
-        <b-input type="email" value="john@" maxlength="30"> </b-input>
+      <b-field label="Email">
+        <b-input v-model="email" type="email" value="" maxlength="30"></b-input>
       </b-field>
     </div>
     <div class="input-3">
       <b-field label="Password">
-        <b-input type="password" value="iwantmytreasure" password-reveal>
+        <b-input v-model="passWord" type="password" value="iwantmytreasure" password-reveal>
         </b-input>
       </b-field>
     </div>
@@ -26,12 +27,13 @@
           placeholder="Click to select..."
           icon="calendar-today"
           trap-focus
+          v-model="dateOfBirth"
         >
         </b-datepicker>
       </b-field>
     </div>
     <div class="input4">
-      <b-checkbox v-model="hasError">Accept Terms and Coditions</b-checkbox>
+      <b-checkbox>Accept Terms and Coditions</b-checkbox>
     </div>
     <div class="dialogue">
       <DialogueBox />
@@ -44,9 +46,30 @@ import DialogueBox from "./DialogueBox.vue";
 
 export default {
   name: "AddEditForm",
+  props: {
+    inputData: {
+      type: Object,
+      default: () => ({}),
+    }
+  },
   components: {
     DialogueBox,
   },
+  data(){
+    return{
+      check: true,
+      firstName: this.inputData.firstName,
+      email: this.inputData.firstName,
+      passWord: this.inputData.password,
+      dateOfBirth: this.inputData.dateOfBirth,
+    }
+  },
+  methods:{
+    completeForm(){
+      console.log(this.firstName, this.email, this.passWord, this.dateOfBirth);
+    },
+  }
+
 };
 </script>
 
