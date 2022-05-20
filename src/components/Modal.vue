@@ -1,12 +1,15 @@
 <template>
     <div class="modalbtn">
         <b-button
-            label="Launch component modal"
+            class="btn"
+            label="Add details from here"
             type="is-primary"
             size="is-medium"
             @click="isComponentModalActive = true" />
 
-        <b-modal
+        <b-button class="btn">Edit details from here</b-button>
+
+        <b-modal           
             v-model="isComponentModalActive"
             has-modal-card
             trap-focus
@@ -49,3 +52,16 @@ export default {
 }
 </script>
 
+<style scoped>
+    .modalbtn{
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+    }
+
+    .btn{
+        width: 40%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
