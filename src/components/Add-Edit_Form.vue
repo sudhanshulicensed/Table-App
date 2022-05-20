@@ -1,6 +1,6 @@
 <template>
   <form class="form" action="">
-  {{inputData}}
+    {{ inputData }}
     <div class="form-title">
       <p>Add-Data to Table</p>
     </div>
@@ -16,27 +16,32 @@
     </div>
     <div class="input-3">
       <b-field label="Password">
-        <b-input v-model="passWord" type="password" value="iwantmytreasure" password-reveal>
+        <b-input
+          v-model="password"
+          type="password"
+          value="iwantmytreasure"
+          password-reveal
+        >
         </b-input>
       </b-field>
     </div>
     <div class="date">
       <b-field label="Select a date">
         <b-datepicker
+          v-model="dateOfBirth"
           type="month"
           placeholder="Click to select..."
           icon="calendar-today"
           trap-focus
-          v-model="dateOfBirth"
         >
         </b-datepicker>
       </b-field>
     </div>
     <div class="input4">
-      <b-checkbox>Accept Terms and Coditions</b-checkbox>
+      <b-checkbox>Accept Terms and Conditions</b-checkbox>
     </div>
     <div class="dialogue">
-      <DialogueBox />
+      <DialogueBox @sendDetail="addDataToForm" />
     </div>
   </form>
 </template>
@@ -48,28 +53,44 @@ export default {
   name: "AddEditForm",
   props: {
     inputData: {
-      type: Object,
-      default: () => ({}),
-    }
+      type: Array,
+      default: () => [],
+    },
   },
   components: {
     DialogueBox,
   },
-  data(){
-    return{
+  data() {
+    return {
       check: true,
-      firstName: this.inputData.firstName,
-      email: this.inputData.firstName,
-      passWord: this.inputData.password,
-      dateOfBirth: this.inputData.dateOfBirth,
-    }
+      firstName: null,
+      email: null,
+      password: null,
+      dateOfBirth: null,
+      inputArray: this.inputData,
+    };
   },
-  methods:{
-    completeForm(){
-      console.log(this.firstName, this.email, this.passWord, this.dateOfBirth);
+  methods: {
+    addDataToForm(condition) {
+      if (condition == true) {
+        if (this.firstName && this.email && this.password && this.dateOfBirth) {
+          this.inputArray.push({
+            iD: this.id++,
+            fiName: this.firstName,
+            eMail: this.email,
+            dOb: this.dateOfBirth,
+          });
+        }
+        console.log(this.inputData),
+        this.firstName= null,
+        this.email= null,
+        this.password= null,
+        this.dateOfBirth= null;
+      } else{
+        console.log("Data isn't pushed");
+      }
     },
-  }
-
+  },
 };
 </script>
 

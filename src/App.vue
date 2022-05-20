@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div class="component">
-      <div class="form-modal"><FormModal :inputData="data"/></div>
-      <div class="form-to-tab"><FormToTable /></div>
+      <div class="form-modal"><FormModal :inputData="tableData"/></div>
+      <div class="form-to-tab"><FormToTable :savedTable="tableData" /></div>
     </div>
   </div>
 </template>
@@ -20,23 +20,9 @@ export default {
   },
   data(){
     return {
-      data: {
-        tableData: [],
-        firstName: "",
-        email: "",
-        password: "",
-        dateOfBirth: "",
-      }
+      tableData: [],  
     }
   },
-  methods: {
-    addDataToTable(){
-      if(this.firstName && this.email && this.dateOfBirth) {
-        console.log(this.firstName, this.email, this.dateOfBirth)
-        this.tableData.push({fname: this.firstName, eMail: this.email, dOb: this.dateOfBirth})
-      }
-    }
-  }
 }
 </script>
 

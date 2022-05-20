@@ -3,7 +3,7 @@
                 label="Launch confirm (default)"
                 type="is-info"
                 size="is-medium"
-                @click="confirm" />
+                @click="confirm"/>
 </template>
 
 <script>
@@ -13,9 +13,11 @@ export default {
         confirm() {
                 this.$buefy.dialog.confirm({
                     message: 'Want to add Data to Table?',
-                    onConfirm: () => this.$buefy.toast.open('Data Added to Table')
-                })
+                    onCancel: () => this.$emit("sendDetail", false),
+                    onConfirm: () => this.$emit("sendDetail", true),
+                });
         },
+
     }
 }
 </script>

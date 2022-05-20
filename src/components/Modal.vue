@@ -30,8 +30,8 @@ export default {
     name: "FormModal",
     props: {
         inputData: {
-            type: Object,
-            default: () => ({}),
+            type: Array,
+            default: () => [],
         }
     },
     components: {

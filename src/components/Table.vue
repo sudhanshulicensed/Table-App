@@ -1,40 +1,31 @@
 <template>
   <div class="table">
-    <b-table></b-table>
+    <b-table :data="savedTable" :columns="columns"></b-table>
   </div>
 </template>
 
 <script>
 export default {
   name: "FormToTable",
+  props: {
+    savedTable : {
+      type: Array,
+      default: () => [],
+    }
+  },
   data() {
     return {
-      data: [
-        {
-          id: 1,
-          first_name: "",
-          email: "Simmons",
-          date: "2016-10-15 13:43:27",
-          gender: "Male",
-        },
-      ],
       columns: [
         {
-          field: "id",
-          label: "ID",
-          width: "40",
-          numeric: true,
-        },
-        {
-          field: "first_name",
+          field: "fiName",
           label: "First Name",
         },
         {
-          field: "email",
+          field: "eMail",
           label: "Email",
         },
         {
-          field: "date",
+          field: "dOb",
           label: "Date of Birth",
           centered: true,
         },
