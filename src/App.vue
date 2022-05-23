@@ -25,7 +25,6 @@ export default {
   },
 }
 </script>
-
 <style>
   .component{
     box-sizing: border-box;

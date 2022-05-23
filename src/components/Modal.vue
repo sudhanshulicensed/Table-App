@@ -5,13 +5,13 @@
             label="Add details from here"
             type="is-primary"
             size="is-medium"
+            
             @click="isComponentModalActive = true" />
 
-        <b-button class="btn">Edit details from here</b-button>
+        <b-button @click="isComponentModalActive = true">Edit details from here</b-button>
 
         <b-modal           
             v-model="isComponentModalActive"
-            has-modal-card
             trap-focus
             :destroy-on-hide="false"
             aria-role="dialog"
@@ -46,9 +46,15 @@ export default {
                 formProps: {
                     email: 'evan@you.com',
                     password: 'testing',
-                }
+                },
+                overlay: false,
             }
-        }   
+    },
+    methods: {
+        // showOverlay() {
+        //     this.overlay= true;
+        // }
+    }   
 }
 </script>
 
@@ -64,4 +70,15 @@ export default {
         margin-left: auto;
         margin-right: auto;
     }
+    
+    /* .overlay{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(3px);
+        z-index: 5;
+    } */
 </style>
