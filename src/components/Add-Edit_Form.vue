@@ -102,6 +102,7 @@ export default {
             iD: ++this.id,
           });
         }
+        this.$emit("close")
         this.firstName= null,
         this.email= null,
         this.password= null,

@@ -1,6 +1,24 @@
 <template>
   <div class="table">
-    <b-table :data="savedTable">
+    <b-table :data="savedTable"
+            :paginated="isPaginated"
+            :per-page="perPage"
+            :current-page.sync="currentPage"
+            :pagination-simple="isPaginationSimple"
+            :pagination-position="paginationPosition"
+            :default-sort-direction="defaultSortDirection"
+            :pagination-rounded="isPaginationRounded"
+            :sort-icon="sortIcon"
+            :sort-icon-size="sortIconSize"
+            default-sort="user.first_name"
+            aria-next-label="Next page"
+            aria-previous-label="Previous page"
+            aria-page-label="Page"
+            aria-current-label="Current page"
+            :page-input="hasInput"
+            :pagination-order="paginationOrder"
+            :page-input-position="inputPosition"
+            :debounce-page-input="inputDebounce">
       <b-table-column field="fiName" label="First Name" centered>
             <template v-slot="props">
               {{ props.row.fiName }}
@@ -74,17 +92,19 @@ export default {
           label: "Action"
         }
       ],
-      isPaginated: true,
-      isPaginationSimple: false,
-      isPaginationRounded: false,
-      paginationPosition: 'bottom',
-      defaultSortDirection: 'asc',
-      sortIcon: 'arrow-up',
-      sortIconSize: 'is-small',
-      hasInput: false,
-      paginationOrder: '',
-      inputPosition: '',
-      inputDebounce: ''
+                isPaginated: true,
+                isPaginationSimple: false,
+                isPaginationRounded: false,
+                paginationPosition: 'bottom',
+                defaultSortDirection: 'asc',
+                sortIcon: 'arrow-up',
+                sortIconSize: 'is-small',
+                currentPage: 1,
+                perPage: 5,
+                hasInput: false,
+                paginationOrder: '',
+                inputPosition: '',
+                inputDebounce: ''
     };
   },
 };

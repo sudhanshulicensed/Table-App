@@ -8,7 +8,6 @@
             size="is-medium"
             @click="isComponentModalActive = true" />
 
-        <!-- <b-button @click="isComponentModalActive = true" class="btn">Edit details from here</b-button> -->
         <b-modal    
             class="blur"       
             v-model="isComponentModalActive"
@@ -27,7 +26,6 @@
 
 <script>
 
-// import AddEditForm from "add-Edit_Form.vue"
 import AddEditForm from "@/components/Add-Edit_Form.vue"
 
 export default {
