@@ -102,7 +102,7 @@ export default {
             iD: ++this.id,
           });
         }
-        this.$emit("close")
+        this.$emit("close", false)
         this.firstName= null,
         this.email= null,
         this.password= null,
@@ -115,6 +115,7 @@ export default {
     this.inputArray[objId].fiName = this.firstName;
     this.inputArray[objId].dOb = this.dateOfBirth;
     this.inputArray[objId].eMail = this.email;
+    this.$emit("close", false)
     },
   },
   watch: {

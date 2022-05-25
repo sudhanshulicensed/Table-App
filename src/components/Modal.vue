@@ -1,6 +1,5 @@
 <template>
     <div class="modalbtn">
-        {{openModal}}
         <b-button
             class="btn"
             label="Add details from here"
@@ -18,7 +17,7 @@
             close-button-aria-label="Close"
             aria-modal>
             <template>
-                <AddEditForm :editInput="editInput" :selectedIndex="selectedIndex" :isEdit="isEdit"  :inputData="inputData"/>
+                <AddEditForm :editInput="editInput" :selectedIndex="selectedIndex" :isEdit="isEdit" @close="closeModal"  :inputData="inputData"/>
             </template>
         </b-modal>
     </div>
@@ -59,6 +58,12 @@ export default {
             if(!newVal) {
                 this.isEdit = false;
             }
+        },
+        
+    },methods:{
+        closeModal(val){
+            this.isComponentModalActive= val;
+            console.log(this.isComponentModalActive)
         }
     },
     components: {
