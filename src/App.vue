@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div class="component">
-      <div class="form-modal"><FormModal :inputData="tableData"/></div>
-      <div class="form-to-tab"><FormToTable :savedTable="tableData" /></div>
+      <div class="form-modal"><FormModal :editInput="val"  :openModal="openModal" :selectedIndex="handleIndex" :inputData="tableData"/></div>
+      <div class="form-to-tab"><FormToTable @editDetail="editDetails" @handleSelectedIndex="handleIndex" :savedTable="tableData" /></div>
     </div>
   </div>
 </template>
@@ -20,8 +20,30 @@ export default {
   },
   data(){
     return {
-      tableData: [],  
+      tableData: [],
+      val: null,
+      openModal: false,
+      selectedIndex: null,
     }
+  },
+  methods: {
+    editDetails(val, openModal) {
+      this.val = val;
+      this.openModal = openModal;
+    },
+    checkIndex(num){
+      if(num === this.selectedIndex){
+        return num
+      }
+    },
+    handleIndex(val){
+      this.selectedIndex = (val);
+      for(let i = 0; i< this.tableData.length; i++) {
+        if(this.tableData[i].iD === this.selectedIndex) {
+            this.tableData.splice(i, 1);
+        }
+       }
+    },
   },
 }
 </script>

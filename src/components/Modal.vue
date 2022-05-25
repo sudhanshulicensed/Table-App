@@ -1,5 +1,6 @@
 <template>
     <div class="modalbtn">
+        {{openModal}}
         <b-button
             class="btn"
             label="Add details from here"
@@ -7,11 +8,10 @@
             size="is-medium"
             @click="isComponentModalActive = true" />
 
-        <b-button class="btn">Edit details from here</b-button>
-
-        <b-modal           
+        <!-- <b-button @click="isComponentModalActive = true" class="btn">Edit details from here</b-button> -->
+        <b-modal    
+            class="blur"       
             v-model="isComponentModalActive"
-            has-modal-card
             trap-focus
             :destroy-on-hide="false"
             aria-role="dialog"
@@ -19,7 +19,7 @@
             close-button-aria-label="Close"
             aria-modal>
             <template>
-                <AddEditForm :inputData="inputData"/>
+                <AddEditForm :editInput="editInput" :selectedIndex="selectedIndex" :isEdit="isEdit"  :inputData="inputData"/>
             </template>
         </b-modal>
     </div>
@@ -27,7 +27,8 @@
 
 <script>
 
-import AddEditForm from "./Add-Edit_Form.vue"
+// import AddEditForm from "add-Edit_Form.vue"
+import AddEditForm from "@/components/Add-Edit_Form.vue"
 
 export default {
     name: "FormModal",
@@ -35,6 +36,31 @@ export default {
         inputData: {
             type: Array,
             default: () => [],
+        },
+        editInput: {
+            type: Object,
+            default: () => ({}),
+        },
+        openModal: {
+            type: Boolean,
+            default: false,
+        },
+        selectedIndex: {
+            type: Function,
+            default: null,
+        }
+    },
+    watch: {
+        openModal(newVal, oldValue){
+            console.log(newVal,oldValue);
+            this.isComponentModalActive = newVal;
+            this.isEdit = true;
+        },
+        isComponentModalActive(newVal, oldValue){
+            console.log(newVal, oldValue);
+            if(!newVal) {
+                this.isEdit = false;
+            }
         }
     },
     components: {
@@ -43,10 +69,7 @@ export default {
         data() {
             return {
                 isComponentModalActive: false,
-                formProps: {
-                    email: 'evan@you.com',
-                    password: 'testing',
-                }
+                isEdit: false,
             }
         }   
 }
@@ -63,5 +86,9 @@ export default {
         width: 40%;
         margin-left: auto;
         margin-right: auto;
+    }
+
+    .blur{
+          backdrop-filter: blur(3px);
     }
 </style>
